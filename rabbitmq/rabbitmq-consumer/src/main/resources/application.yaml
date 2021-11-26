@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  rabbitmq:
+    host: localhost
+    username: admin
+    password: admin
+    virtual-host: /
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://db224.dev.rs.com:3306/db_vr?useUnicode=true&useSSL=false&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: user_vr
+    password: user_vr20190411
+
+mybatis-plus:
+  type-aliases-package: com.somelogs.rabbitmq.consumer.dal.entity
+  mapper-locations: classpath:mappers/*.xml
+  global-config:
+    db-config:
+      table-prefix: tb_
