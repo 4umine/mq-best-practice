@@ -1,6 +1,5 @@
 package com.somelogs.rabbitmq.consumer.controller;
 
-import com.somelogs.rabbitmq.consumer.dal.entity.ConsumerMessage;
 import com.somelogs.rabbitmq.consumer.service.RabbitConsumerService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,10 +23,5 @@ public class ConsumerController {
 	public String testSave(String msgId) {
 		rabbitConsumerService.saveMessage(msgId);
 		return "ok";
-	}
-
-	@GetMapping("/get")
-	public ConsumerMessage testGet(String msgId) {
-		return rabbitConsumerService.getMsg(msgId);
 	}
 }

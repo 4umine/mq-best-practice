@@ -1,7 +1,5 @@
 package com.somelogs.rabbitmq.consumer.service;
 
-import com.somelogs.rabbitmq.consumer.dal.entity.ConsumerMessage;
-
 /**
  * 描述
  *
@@ -10,6 +8,4 @@ import com.somelogs.rabbitmq.consumer.dal.entity.ConsumerMessage;
 public interface RabbitConsumerService {
 
 	void saveMessage(String msgId);
-
-	ConsumerMessage getMsg(String msgId);
 }

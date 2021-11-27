@@ -4,13 +4,13 @@ import cn.hutool.json.JSONUtil;
 import com.somelogs.rabbitmq.constant.RabbitmqConstant;
 import com.somelogs.rabbitmq.producer.dal.entity.ProducerMessage;
 import com.somelogs.rabbitmq.producer.dal.mapper.ProducerMessageMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import javax.annotation.Resource;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -20,12 +20,11 @@ import java.util.concurrent.Executors;
  * @author LBG - 2021/11/26
  */
 @Component
+@RequiredArgsConstructor
 public class RabbitProducer {
 
-	@Resource
-	private RabbitTemplate rabbitTemplate;
-	@Resource
-	private ProducerMessageMapper producerMessageMapper;
+	private final RabbitTemplate rabbitTemplate;
+	private final ProducerMessageMapper producerMessageMapper;
 
 	/**
 	 * thread pool to send msg
