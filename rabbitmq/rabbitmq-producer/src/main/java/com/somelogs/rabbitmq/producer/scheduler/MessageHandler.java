@@ -15,6 +15,8 @@ import java.util.List;
 /**
  * list the non send msg to send
  *
+ * prd env can be replaced by dts(eg. xxlJob)
+ *
  * @author LBG - 2021/11/26
  */
 @Component
@@ -25,7 +27,10 @@ public class MessageHandler {
 	@Resource
 	private RabbitProducer rabbitProducer;
 
-	@Scheduled(fixedDelay = 1000)
+	/**
+	 * list sending message to resend
+	 */
+	@Scheduled(fixedDelay = 30000)
 	public void sendMsg() {
 		QueryWrapper<ProducerMessage> wrapper = new QueryWrapper<>();
 		wrapper.eq("msg_status", MessageStatusEnum.SENDING.getCode());

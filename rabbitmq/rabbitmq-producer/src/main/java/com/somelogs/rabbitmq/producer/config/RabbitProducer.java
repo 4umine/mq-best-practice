@@ -1,5 +1,6 @@
 package com.somelogs.rabbitmq.producer.config;
 
+import cn.hutool.json.JSONUtil;
 import com.somelogs.rabbitmq.constant.RabbitmqConstant;
 import com.somelogs.rabbitmq.producer.dal.entity.ProducerMessage;
 import com.somelogs.rabbitmq.producer.dal.mapper.ProducerMessageMapper;
@@ -40,7 +41,7 @@ public class RabbitProducer {
 
 		ProducerMessage message = new ProducerMessage();
 		message.setMsgId(msgId);
-		message.setMsgBody(String.valueOf(data));
+		message.setMsgBody(JSONUtil.toJsonStr(data.getPayload()));
 		message.setTopic(data.getRoutingKey());
 		message.setTtl(data.getTtl());
 		producerMessageMapper.insert(message);
@@ -58,14 +59,16 @@ public class RabbitProducer {
 			// 这里一般是用来做延时消息
 			ExpirationMessagePostProcessor processor = new ExpirationMessagePostProcessor(String.valueOf(ttl));
 			rabbitTemplate.convertAndSend(
-					RabbitmqConstant.Direct.EXCHANGE,
+					//RabbitmqConstant.Direct.EXCHANGE,
+					RabbitmqConstant.Topic.EXCHANGE,
 					routingKey,
 					payload,
 					processor,
 					correlationData);
 		} else {
 			rabbitTemplate.convertAndSend(
-					RabbitmqConstant.Direct.EXCHANGE,
+					//RabbitmqConstant.Direct.EXCHANGE,
+					RabbitmqConstant.Topic.EXCHANGE,
 					routingKey,
 					payload,
 					correlationData);

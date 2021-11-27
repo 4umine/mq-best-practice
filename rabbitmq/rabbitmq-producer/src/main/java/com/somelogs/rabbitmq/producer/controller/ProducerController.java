@@ -19,6 +19,9 @@ public class ProducerController {
 	@Resource
 	public RabbitProducerService rabbitProducerService;
 
+	/**
+	 * producer publish msg test
+	 */
 	@GetMapping("/order/save")
 	public Long saveOrder(Long amount) {
 		return rabbitProducerService.saveOrder(amount);
