@@ -19,4 +19,5 @@ public class ConsumerMessage {
 	private String topic;
 	private String msgId;
 	private String msgBody;
+	private Integer retryTime;
 }

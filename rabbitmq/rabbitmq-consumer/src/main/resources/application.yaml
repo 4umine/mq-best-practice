@@ -8,7 +8,7 @@ spring:
     password: admin
     virtual-host: /
     listener:
-      direct:
+      simple:
         acknowledge-mode: manual
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
