@@ -10,6 +10,7 @@ spring:
     listener:
       simple:
         acknowledge-mode: manual
+        prefetch: 50 # 默认 250
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://db224.dev.rs.com:3306/db_vr?useUnicode=true&useSSL=false&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
